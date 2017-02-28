@@ -63,7 +63,7 @@ assertEq('B3', neighbour('A', 3, 1))
 
 neighbourOffset = 0
 beatIx = 0
-partIx = 0
+partIx = 1
 chordName = '' #received from master
 
 def playNextNote():
@@ -110,6 +110,7 @@ while True:
         #delays things, at least when double digits
         #display.show(msg)
         chordName = msg
+        display.scroll(chordName, delay=100, wait=False, loop=False, monospace=False)
 
     #neighbourOffsetFromGesture()    
 

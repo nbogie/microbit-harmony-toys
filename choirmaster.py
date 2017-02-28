@@ -40,6 +40,8 @@ def incProgIx():
     chordName = progression[progIx]
     #delays things
     #display.show(chordName)
+    display.scroll(chordName, delay=100, wait=False, loop=False, monospace=False)
+
     radio.send(chordName)
 
 def playNextNote():
