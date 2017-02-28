@@ -4,6 +4,11 @@ import radio
 import random
 import microbit
 
+#TODO: remember and repeat the randomly generated ostinato
+#TODO: R + 10th is nice
+#TODO: 3 + 5 is nice (rootless)
+
+
 chords = {
     'I': ["C3:1", "E4:1", "G4:1", "B4:1"], 
     'ii': ["D3:1", "F4:1", "A4:1", "C5:1"], 
@@ -22,7 +27,8 @@ chords = {
 
 progIx = 0
 beatIx = 0
-progression = "I|III|IV|VI|ii|VI|V".split('|')
+#progression = "I|III|IV|VI|ii|VI|V".split('|')
+progression = "vi|V|I|IV".split('|')
 partIx = 0
 
 
