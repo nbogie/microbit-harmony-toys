@@ -18,7 +18,6 @@ def play():
     y.reverse()
     music.play(y)
 
-
 radio.on()
 display.show(Image.GHOST)
 
