@@ -2,6 +2,8 @@ from microbit import *
 import music
 import radio
 import random
+import microbit
+
 chords = [
     ["C4:1", "E4:1", "G4:1", "B4:1"], 
     ["D4:1", "F4:1", "A4:1", "C5:1"], 
@@ -76,3 +78,6 @@ while True:
 
     if button_b.is_pressed():
         incPartIx(1)
+
+    if button_a.is_pressed() and button_b.is_pressed():
+        microbit.panic(0) #shut it up!  Require a restart.
