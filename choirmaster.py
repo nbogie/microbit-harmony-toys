@@ -8,7 +8,7 @@ import microbit
 #TODO: R + 10th is nice
 #TODO: 3 + 5 is nice (rootless)
 #TODO: persist a programmed chord progression
-chordIndex = 'I ii iii IV V vi vii'.split(' ')
+chordIndex = 'I ii II iii III IV iv V v vi VI vii'.split(' ')
 silent = False
 
 chords = {
@@ -29,8 +29,13 @@ chords = {
 
 progIx = 0
 beatIx = 0
-#progression = "I|III|IV|VI|ii|VI|V".split('|')
-progression = "vi|V|I|IV".split('|')
+progressions = [ "vi V I IV".split(' '),
+                 "I III IV VI ii VI V".split(' '), 
+                 "vi IV vi IV V iii".split(' '),
+                 "I III IV iv I ii II V".split(' ')
+]
+
+progression = progressions[3]
 partIx = 0
 
 
