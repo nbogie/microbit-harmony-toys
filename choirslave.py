@@ -22,9 +22,7 @@ chords = {
     'vii': ["B3", "D5", "F5", "A5"]
 }
 
-scale = "C D E F G A B".split(' ')
-
-isCycling = True
+isCycling = False
 
 beatIx = 0
 partIx = 1
@@ -58,8 +56,10 @@ def incPartIx(offset):
         partIx = 3
 
 
-radio.on()
+if button_a.is_pressed():
+    isCycling = True
 
+radio.on()
 display.show(Image.GHOST, wait=False)
 
 while True:
