@@ -4,6 +4,8 @@ import radio
 import random
 import microbit
 
+#TODO: don't use the default radio channel, group... 
+
 #TODO: remember and repeat the randomly generated ostinato
 #TODO: R + 10th is nice
 #TODO: 3 + 5 is nice (rootless)
