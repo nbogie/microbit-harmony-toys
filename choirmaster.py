@@ -130,6 +130,8 @@ if button_a.is_pressed():
 
 display.show(Image.PACMAN, wait=False)
 radio.on()
+progIx = 0
+beatIx = 0
 
 while True:
     if not silent:
