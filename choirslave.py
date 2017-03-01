@@ -102,7 +102,7 @@ def neighbourOffsetFromGesture():
 
 
 radio.on()
-display.show(Image.GHOST)
+display.show(Image.GHOST, wait=False)
 while True:
 
     msg = radio.receive()
