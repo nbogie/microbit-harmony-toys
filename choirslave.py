@@ -74,9 +74,14 @@ def playNextNote():
     noteName = chords[chordName][partIx]
     if (beatIx != 0 and random.random() > 0.9):
         noteName = "R"
+    elif beatIx == 15:
+        noteName = "" #don't even play a rest.  hack to be ready to hear new chord.
     elif neighbourOffset != 0:
         noteName = neighbour(noteOf(noteName), octaveOf(noteName), neighbourOffset)
-    music.play(noteName + ":1")
+    
+    if noteName != '':
+        music.play(noteName + ":1")
+
     beatIx = beatIx + 1
 
 def incPartIx(offset):
@@ -109,12 +114,14 @@ while True:
     msg = radio.receive()
     if (msg != None):
         chordName = msg
+        beatIx = 0
         display.scroll(chordName, delay=70, wait=False, loop=False, monospace=False)
 
     #neighbourOffsetFromGesture()    
 
     if (chordName != None and chordName != ''):
-        playNextNote()
+        if beatIx < 16:
+            playNextNote()
 
     if button_a.was_pressed():
         incPartIx(-1)
