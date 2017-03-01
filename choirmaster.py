@@ -33,7 +33,8 @@ progIx = 0
 beatIx = 0
 progressions = [ 
     "vi V I IV".split(' '),
-    "IV #IVdim V #Vdim vi ii V".split(' '),
+    "ii IV vi V".split(' '),
+    #, "IV #IVdim V #Vdim vi ii V".split(' '),
     #, "I III IV VI ii VI ii V v I IV #IVdim I VI II V I VI II V".split(' ')
     #, "vi IV vi IV V iii".split(' ')
     #, "I #Idim ii V ii V vi IV".split(' ')
@@ -104,6 +105,7 @@ class EditMode:
         global progression
         progression = self.chords
         display.show(Image.YES, wait=True)
+
 
     def display(self):
         display.scroll(self.chordName, wait=False, delay=70)
