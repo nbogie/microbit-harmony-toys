@@ -89,7 +89,7 @@ class EditMode:
     
     def lockChord(self):
         self.chords.append(self.chordName)
-        display.scroll(",".join(self.chords), wait=True, delay=70)
+        display.scroll(",".join(self.chords), wait=False, delay=70)
 
     def finaliseProgression(self):
         global progression
@@ -107,6 +107,7 @@ if button_a.is_pressed():
     while True:
         if button_a.is_pressed() and button_b.is_pressed():
             editor.finaliseProgression()
+            sleep(1000)
             break
 
         if button_a.was_pressed():
@@ -122,9 +123,9 @@ radio.on()
 def toggleSilence():
     global silent
     silent = not silent
-    sleep(300)
-    display.show(Image.ASLEEP if silent else Image.MUSIC_QUAVERS)
-    
+    display.show(Image.ASLEEP if silent else Image.MUSIC_QUAVERS, wait=False)
+    sleep(1000)
+
 while True:
     if not silent:
         playNextNote()
