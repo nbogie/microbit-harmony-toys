@@ -117,10 +117,10 @@ while True:
     if (chordName != None and chordName != ''):
         playNextNote()
 
-    if button_a.is_pressed():
+    if button_a.was_pressed():
         incPartIx(-1)
 
-    if button_b.is_pressed():
+    if button_b.was_pressed():
         incPartIx(1)
 
     if button_a.is_pressed() and button_b.is_pressed():

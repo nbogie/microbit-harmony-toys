@@ -7,7 +7,7 @@ import microbit
 #TODO: remember and repeat the randomly generated ostinato
 #TODO: R + 10th is nice
 #TODO: 3 + 5 is nice (rootless)
-
+#TODO: persist a programmed chord progression
 
 chords = {
     'I': ["C3:1", "E4:1", "G4:1", "B4:1"], 
@@ -73,10 +73,10 @@ radio.on()
 while True:
     playNextNote()
 
-    if button_a.is_pressed():
+    if button_a.was_pressed():
         incPartIx(-1)
 
-    if button_b.is_pressed():
+    if button_b.was_pressed():
         incPartIx(1)
 
     if button_a.is_pressed() and button_b.is_pressed():
