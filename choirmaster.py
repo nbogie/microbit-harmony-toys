@@ -46,8 +46,7 @@ def incProgIx():
     if (progIx >= len(progression)):
         progIx = 0;    
     chordName = progression[progIx]
-    #delays things
-    #display.show(chordName)
+    
     display.scroll(chordName, delay=70, wait=False, loop=False, monospace=False)
 
     radio.send(chordName)
