@@ -8,7 +8,7 @@ import microbit
 #TODO: R + 10th is nice
 #TODO: 3 + 5 is nice (rootless)
 #TODO: persist a programmed chord progression
-chordIndex = 'I #Idim ii II iii III IV iv #IVdim V v V#dim vi VI vii'.split(' ')
+chordIndex = 'I #Idim ii II iii III IV iv #IVdim V v #Vdim vi VI vii'.split(' ')
 
 chords = {
     'I': ["C3", "E4", "G4", "B4"], 
@@ -95,6 +95,7 @@ class EditMode:
         if self.chordIx >= len(chordIndex):
             self.chordIx = 0
         self.chordName = chordIndex[self.chordIx]
+        music.play(chords[self.chordName], wait=False)
         self.display()
     
     def lockChord(self):
