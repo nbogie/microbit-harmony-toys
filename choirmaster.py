@@ -31,6 +31,8 @@ chords = {
 silent = False
 progIx = 0
 beatIx = 0
+partIx = 0
+
 progressions = [ 
     "vi V I IV".split(' '),
     "ii IV vi V".split(' '),
@@ -40,9 +42,7 @@ progressions = [
     #, "I #Idim ii V ii V vi IV".split(' ')
 ]
 
-
 progression = random.choice(progressions)
-partIx = 0
 
 def incProgIx():
     global progIx
@@ -107,7 +107,6 @@ class EditMode:
         progression = self.chords
         display.show(Image.YES, wait=True)
 
-
     def display(self):
         display.scroll(self.chordName, wait=False, delay=70)
 
@@ -131,8 +130,10 @@ if button_a.is_pressed():
 
 display.show(Image.PACMAN, wait=False)
 radio.on()
+
 progIx = 0
 beatIx = 0
+partIx = 0
 
 while True:
     if not silent:
