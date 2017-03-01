@@ -8,8 +8,7 @@ import microbit
 #TODO: R + 10th is nice
 #TODO: 3 + 5 is nice (rootless)
 #TODO: persist a programmed chord progression
-chordIndex = 'I #Idim ii II iii III IV iv V v vi VI vii'.split(' ')
-silent = False
+chordIndex = 'I #Idim ii II iii III IV iv #IVdim V v V#dim vi VI vii'.split(' ')
 
 chords = {
     'I': ["C3", "E4", "G4", "B4"], 
@@ -19,25 +18,29 @@ chords = {
     'iii': ["E3", "G4", "B4", "D5"], 
     'III': ["E3", "G#4", "B4", "D5"], 
     'IV': ["F3", "A4", "C5", "E5"], 
+    '#IVdim': ["F#3", "A4", "C5", "Eb5"], 
     'iv': ["F3", "Ab4", "C5", "E5"], 
     'V': ["G3", "B4", "D5", "F5"], 
+    '#Vdim': ["G#3", "B4", "D5", "F5"], 
     'v': ["G3", "Bb4", "D5", "F5"], 
     'vi': ["A3", "C5", "E5", "G5"], 
     'VI': ["A3", "C#5", "E5", "G5"], 
     'vii': ["B3", "D5", "F5", "A5"]
 }
 
-
+silent = False
 progIx = 0
 beatIx = 0
-progressions = [ "vi V I IV".split(' '),
-                 "I III IV VI ii VI V".split(' '), 
-                 "vi IV vi IV V iii".split(' '),
-                 "I III IV iv I ii II V".split(' '),
-                 "I #Idim ii V ii V vi IV".split(' ')
+progressions = [ 
+    "vi V I IV".split(' '),
+    "IV #IVdim V #Vdim vi ii V".split(' '),
+    #, "I III IV VI ii VI ii V v I IV #IVdim I VI II V I VI II V".split(' ')
+    #, "vi IV vi IV V iii".split(' ')
+    #, "I #Idim ii V ii V vi IV".split(' ')
 ]
 
-progression = progressions[4]
+
+progression = random.choice(progressions)
 partIx = 0
 
 def incProgIx():
@@ -71,6 +74,12 @@ def incPartIx(offset):
         partIx = 0
     if (partIx < 0):
         partIx = 3
+
+def toggleSilence():
+    global silent
+    silent = not silent
+    display.show(Image.ASLEEP if silent else Image.MUSIC_QUAVERS, wait=False)
+    sleep(1000)
 
     
 class EditMode:
@@ -119,12 +128,6 @@ if button_a.is_pressed():
 
 display.show(Image.PACMAN, wait=False)
 radio.on()
-
-def toggleSilence():
-    global silent
-    silent = not silent
-    display.show(Image.ASLEEP if silent else Image.MUSIC_QUAVERS, wait=False)
-    sleep(1000)
 
 while True:
     if not silent:
