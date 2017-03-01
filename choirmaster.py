@@ -67,7 +67,7 @@ def incPartIx(offset):
 
     
 
-display.show(Image.PACMAN)
+display.show(Image.PACMAN, wait=False)
 radio.on()
 
 while True:
