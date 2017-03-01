@@ -94,7 +94,7 @@ def incPartIx(offset):
 
 
 def neighbourOffsetFromGesture():
-    #gesture = accelerometer.current_gesture()
+    gesture = accelerometer.current_gesture()
     global neighbourOffset
     tilt = accelerometer.get_x()
 
@@ -117,7 +117,7 @@ while True:
         beatIx = 0
         display.scroll(chordName, delay=70, wait=False, loop=False, monospace=False)
 
-    #neighbourOffsetFromGesture()    
+    neighbourOffsetFromGesture()    
 
     if (chordName != None and chordName != ''):
         if beatIx < 16:
