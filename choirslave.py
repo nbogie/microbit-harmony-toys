@@ -25,7 +25,6 @@ def assertEq(a, b):
         display.scroll("AF." + str(a) + " != " + str(b));
         microbit.panic(1)
 
-
 def noteOf(noteWord):
     #TODO: consider also flats and sharps
     return noteWord[0]
@@ -107,10 +106,8 @@ while True:
 
     msg = radio.receive()
     if (msg != None):
-        #delays things, at least when double digits
-        #display.show(msg)
         chordName = msg
-        display.scroll(chordName, delay=100, wait=False, loop=False, monospace=False)
+        display.scroll(chordName, delay=70, wait=False, loop=False, monospace=False)
 
     #neighbourOffsetFromGesture()    
 
