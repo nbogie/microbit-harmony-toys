@@ -42,7 +42,7 @@ def incProgIx():
     chordName = progression[progIx]
     #delays things
     #display.show(chordName)
-    display.scroll(chordName, delay=100, wait=False, loop=False, monospace=False)
+    display.scroll(chordName, delay=70, wait=False, loop=False, monospace=False)
 
     radio.send(chordName)
 
@@ -84,31 +84,32 @@ class EditMode:
     
     def lockChord(self):
         self.chords.append(self.chordName)
-        display.scroll(",".join(self.chords))
+        display.scroll(",".join(self.chords), wait=True, delay=70)
 
     def finaliseProgression(self):
         global progression
         progression = self.chords
+        display.show(Image.YES, wait=True)
 
     def display(self):
-        display.scroll(self.chordName, wait=False)
+        display.scroll(self.chordName, wait=False, delay=70)
 
 if button_a.is_pressed():
     editor = EditMode()
-    display.scroll("Edit mode!", wait=True, delay=50)
+    display.scroll("Editing...", wait=True, delay=50)
     editor.display()
 
     while True:
+        if button_a.is_pressed() and button_b.is_pressed():
+            editor.finaliseProgression()
+            break
+
         if button_a.was_pressed():
             editor.incChord()
 
         if button_b.was_pressed():
             editor.lockChord()
 
-        if button_a.is_pressed() and button_b.is_pressed():
-            editor.finaliseProgression()
-            sleep(1000)
-            break
 
 display.show(Image.PACMAN, wait=False)
 radio.on()
