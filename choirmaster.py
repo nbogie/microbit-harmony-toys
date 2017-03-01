@@ -8,6 +8,8 @@ import microbit
 #TODO: R + 10th is nice
 #TODO: 3 + 5 is nice (rootless)
 #TODO: persist a programmed chord progression
+chordIndex = 'I ii iii IV V vi vii'.split(' ')
+silent = False
 
 chords = {
     'I': ["C3:1", "E4:1", "G4:1", "B4:1"], 
@@ -66,12 +68,60 @@ def incPartIx(offset):
         partIx = 3
 
     
+class EditMode:
+    def __init__(self):
+        self.chordIx = 0
+        self.chords = []
+        self.chordName = chordIndex[self.chordIx]
+
+    def incChord(self):
+        global chordIndex
+        self.chordIx = self.chordIx + 1
+        if self.chordIx >= len(chordIndex):
+            self.chordIx = 0
+        self.chordName = chordIndex[self.chordIx]
+        self.display()
+    
+    def lockChord(self):
+        self.chords.append(self.chordName)
+        display.scroll(",".join(self.chords))
+
+    def finaliseProgression(self):
+        global progression
+        progression = self.chords
+
+    def display(self):
+        display.scroll(self.chordName, wait=False)
+
+if button_a.is_pressed():
+    editor = EditMode()
+    display.scroll("Edit mode!", wait=True, delay=50)
+    editor.display()
+
+    while True:
+        if button_a.was_pressed():
+            editor.incChord()
+
+        if button_b.was_pressed():
+            editor.lockChord()
+
+        if button_a.is_pressed() and button_b.is_pressed():
+            editor.finaliseProgression()
+            sleep(1000)
+            break
 
 display.show(Image.PACMAN, wait=False)
 radio.on()
 
+def toggleSilence():
+    global silent
+    silent = not silent
+    sleep(300)
+    display.show(Image.ASLEEP if silent else Image.MUSIC_QUAVERS)
+    
 while True:
-    playNextNote()
+    if not silent:
+        playNextNote()
 
     if button_a.was_pressed():
         incPartIx(-1)
@@ -80,4 +130,4 @@ while True:
         incPartIx(1)
 
     if button_a.is_pressed() and button_b.is_pressed():
-        microbit.panic(0) #shut it up!  Require a restart.
+        toggleSilence()
