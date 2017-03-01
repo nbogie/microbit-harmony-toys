@@ -8,11 +8,12 @@ import microbit
 #TODO: R + 10th is nice
 #TODO: 3 + 5 is nice (rootless)
 #TODO: persist a programmed chord progression
-chordIndex = 'I ii II iii III IV iv V v vi VI vii'.split(' ')
+chordIndex = 'I #Idim ii II iii III IV iv V v vi VI vii'.split(' ')
 silent = False
 
 chords = {
     'I': ["C3:1", "E4:1", "G4:1", "B4:1"], 
+    '#Idim': ["C#3:1", "E4:1", "G4:1", "Bb4:1"], 
     'ii': ["D3:1", "F4:1", "A4:1", "C5:1"], 
     'II': ["D3:1", "F#4:1", "A4:1", "C5:1"], 
     'iii': ["E3:1", "G4:1", "B4:1", "D5:1"], 
@@ -24,7 +25,7 @@ chords = {
     'vi': ["A3:1", "C5:1", "E5:1", "G5:1"], 
     'VI': ["A3:1", "C#5:1", "E5:1", "G5:1"], 
     'vii': ["B3:1", "D5:1", "F5:1", "A5:1"]
-    }
+}
 
 
 progIx = 0
@@ -32,12 +33,12 @@ beatIx = 0
 progressions = [ "vi V I IV".split(' '),
                  "I III IV VI ii VI V".split(' '), 
                  "vi IV vi IV V iii".split(' '),
-                 "I III IV iv I ii II V".split(' ')
+                 "I III IV iv I ii II V".split(' '),
+                 "I #Idim ii V ii V vi IV".split(' ')
 ]
 
-progression = progressions[3]
+progression = progressions[4]
 partIx = 0
-
 
 def incProgIx():
     global progIx
