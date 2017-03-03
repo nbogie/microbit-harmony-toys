@@ -4,10 +4,20 @@ import radio
 import random
 import speech
 
+def solfa():
+    return [
+    "#115DOWWWWWW",   # Doh
+    "#103REYYYYYY",   # Re
+    "#94MIYYYYYY",    # Mi
+    "#88FAOAOAOAOR",  # Fa
+    "#78SOHWWWWW",    # Soh
+    "#70LAOAOAOAOR",  # La
+    "#62TIYYYYYY",    # Ti
+    "#58DOWWWWWW",    # Doh
+    ]
+
 def randomVoice():
     return {'mouth': random.randint(0,255), 'throat': random.randint(0,255)}
-
-myVoice = randomVoice()
 
 def voiceSing(phoneme):
     speech.sing(phoneme, throat=myVoice['throat'], mouth=myVoice['mouth'])
@@ -42,25 +52,7 @@ def slaveLoop():
             myVoice = randomVoice()
             voiceSing(lastPhoneme)
 
-
-def solfa():
-    return [
-    "#115DOWWWWWW",   # Doh
-    "#103REYYYYYY",   # Re
-    "#94MIYYYYYY",    # Mi
-    "#88FAOAOAOAOR",  # Fa
-    "#78SOHWWWWW",    # Soh
-    "#70LAOAOAOAOR",  # La
-    "#62TIYYYYYY",    # Ti
-    "#58DOWWWWWW",    # Doh
-    ]
-
-def doremi():    
-    song = ''.join(solfa())
-    s = random.randint(15,50)
-    display.scroll("s:"+str(s), wait=False, loop=True)
-    #speech.sing(song, speed=s, mouth=random.randint(0,255), throat=random.randint(0,255))
-    speech.sing(random.choice(solfa())+" " + randomWord(), speed=s, mouth=random.randint(0,255), throat=random.randint(0,255))
+myVoice = randomVoice()
 
 lastPhoneme=solfa()[0]
 
