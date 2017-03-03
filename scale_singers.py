@@ -105,26 +105,25 @@ def singThenTell(sd):
     radio.send(str(sd))        
 
 def mainLoop():
-
+    currentScaleDegree = 0;
     while True:
         global myVoice
         
         if button_a.was_pressed():
             singThenTell(0)
-
+            currentScaleDegree = 0
+        
         msg = radio.receive()
         if (msg != None):
-            i = int(msg)
-            singThenTell(i+1)            
+            currentScaleDegree = int(msg) + 1
+            singThenTell(currentScaleDegree)
 
         if button_b.was_pressed():
             myVoice = randomVoice()
-            voiceSing(solfa(5))
-
-
+            voiceSing(solfa(currentScaleDegree))
 
 myVoice = randomVoice()
-
+radio.config(channel=20, group=20)
 radio.on()
 display.show(Image.MUSIC_QUAVERS, wait=False)
 mainLoop()
