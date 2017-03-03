@@ -69,7 +69,7 @@ def curwenSign(sd):
 #e.g. solfaPhoneme(0) returns "#115DOWWWWWWW", 
 #e.g. solfaPhoneme(4) returns "#78SOHWWWW"
 #This string can then be passed to speech.sing(str)
-#These are from the C Major scale, currently.
+#These pitches are from the C Major scale, currently.
 def solfaPhoneme(n=None):
     global pitches
     if n == None:
