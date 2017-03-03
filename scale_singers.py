@@ -66,11 +66,11 @@ def curwenSign(sd):
     return images[sd]
 
 #return a pitched phoneme string for the given scale degree (count from 0)
-#e.g. solfa(0) returns "#115DOWWWWWWW", 
-#e.g. solfa(4) returns "#78SOHWWWW"
+#e.g. solfaPhoneme(0) returns "#115DOWWWWWWW", 
+#e.g. solfaPhoneme(4) returns "#78SOHWWWW"
 #This string can then be passed to speech.sing(str)
 #These are from the C Major scale, currently.
-def solfa(n=None):
+def solfaPhoneme(n=None):
     global pitches
     if n == None:
         n = random.randint(0, len(pitches)-1)
@@ -99,7 +99,7 @@ def voiceSing(phoneme):
     speech.sing(phoneme, speed=80, throat=myVoice['throat'], mouth=myVoice['mouth'])
     
 def singThenTell(sd):
-    phoneme = solfa(sd)
+    phoneme = solfaPhoneme(sd)
     display.show(curwenSign(sd % 7), delay=50, wait=False)
     voiceSing(phoneme)
     radio.send(str(sd))        
@@ -115,12 +115,12 @@ def mainLoop():
         
         msg = radio.receive()
         if (msg != None):
-            currentScaleDegree = int(msg) + 1
+            currentScaleDegree = (int(msg) + 1) % 14
             singThenTell(currentScaleDegree)
 
         if button_b.was_pressed():
             myVoice = randomVoice()
-            voiceSing(solfa(currentScaleDegree))
+            voiceSing(solfaPhoneme(currentScaleDegree))
 
 myVoice = randomVoice()
 radio.config(channel=20, group=20)
