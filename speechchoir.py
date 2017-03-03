@@ -16,6 +16,7 @@ pitches = [115, 103, 94, 88, 78, 70, 62, 58, 52, 46, 44, 39, 35, 31, 29, 26, 23,
 #e.g. solfa(0) returns "#115DOWWWWWWW", 
 #e.g. solfa(4) returns "#78SOHWWWW"
 #This string can then be passed to speech.sing(str)
+#These are from the C Major scale, currently.
 def solfa(n=None):
     global pitches
     if n == None:
