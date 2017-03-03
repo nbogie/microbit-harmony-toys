@@ -12,6 +12,15 @@ import speech
 
 pitches = [115, 103, 94, 88, 78, 70, 62, 58, 52, 46, 44, 39, 35, 31, 29, 26, 23, 22]
 
+class Voice:
+    def __init__(self):
+        self.throat = 0
+        self.mouth = 255
+        
+    def change(self):
+        self.throat = random.randint(0,255)
+        self.mouth = random.randint(0,255)
+
 def curwenSign(sd):
     images = [
         Image(
@@ -91,12 +100,9 @@ def solfaPhoneme(n=None):
     #e.g. return "#115DOWWWWWW"
     return "#{}{}".format(str(pitch), phoneme)
 
-def randomVoice():
-    return {'mouth': random.randint(0,255), 'throat': random.randint(0,255)}
-
 #speech.sing  the given phoneme, using my voice
 def voiceSing(phoneme):
-    speech.sing(phoneme, speed=80, throat=myVoice['throat'], mouth=myVoice['mouth'])
+    speech.sing(phoneme, speed=80, throat=myVoice.throat, mouth=myVoice.mouth)
     
 def singThenTell(sd):
     phoneme = solfaPhoneme(sd)
@@ -119,10 +125,10 @@ def mainLoop():
             singThenTell(currentScaleDegree)
 
         if button_b.was_pressed():
-            myVoice = randomVoice()
+            myVoice.change()
             voiceSing(solfaPhoneme(currentScaleDegree))
 
-myVoice = randomVoice()
+myVoice = Voice()
 radio.config(channel=20, group=20)
 radio.on()
 display.show(Image.MUSIC_QUAVERS, wait=False)
