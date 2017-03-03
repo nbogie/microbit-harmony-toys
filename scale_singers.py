@@ -14,8 +14,8 @@ pitches = [115, 103, 94, 88, 78, 70, 62, 58, 52, 46, 44, 39, 35, 31, 29, 26, 23,
 
 class Voice:
     def __init__(self):
-        self.throat = 0
-        self.mouth = 255
+        self.throat = 128
+        self.mouth = 128
         
     def change(self):
         self.throat = random.randint(0,255)
